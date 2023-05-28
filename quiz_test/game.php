@@ -1,5 +1,6 @@
 <?php
     session_start();
+    require_once "includes/auth_check.php";
     require_once "connection.php";
     $question_number = $_SESSION["question_number"];
 
@@ -63,9 +64,34 @@
     $all_answers = array($movie_shots, $characters, $actors, $text_quote, $audio_quote, $soundtrack, $director, $movie_director);
     $score = 0;
 
-    if (isset($_POST["nextQuestion"]) && $question_number < count($questions) - 1) {
+    if (isset($_POST["nextQuestion"]) && $question_number <= count($questions) - 1) {
         $score = htmlspecialchars($_POST["score"]);
+        $_SESSION["quiz_score"] = $score;
+        if ($question_number == 7) {        
+            $id = $_SESSION["user_id"];
+            $score = $_SESSION["quiz_score"];
+            
+            $sql = "SELECT correct_answers, wrong_answers, game_played FROM users
+                    WHERE id = ?";
+            $statement = $connection->prepare($sql);
+            $statement->execute([$id]);
+            $row = $statement->fetchAll();
+            
+            $correct_answers = $row[0]["correct_answers"];
+            $wrong_answers = $row[0]["wrong_answers"];
+            $game_played = $row[0]["game_played"];
+            
+            $correct_answers += $score;
+            $wrong_answers += 8 - $score;
+            $game_played += 1;
         
+            $sql = "UPDATE users SET correct_answers = ?, wrong_answers = ?, game_played = ?
+                    WHERE id = ?";
+            $statement = $connection->prepare($sql);
+            $statement->execute([$correct_answers, $wrong_answers, $game_played, $id]);
+            header("location: results.php");
+        }
+
         $question_number += 1;
         $_SESSION["question_number"] = $question_number;
     }

@@ -14,6 +14,7 @@
 </head>
 
 <body>
+    <?php include "includes/login_nav.php";?>
     <h1>Start playing right now</h1>
     <form action="game.php" method="POST">
         <button>Play</button>
