@@ -61,8 +61,11 @@
     $movie_director = directorAnswers($connection, "movies", "movie_shot");
 
     $all_answers = array($movie_shots, $characters, $actors, $text_quote, $audio_quote, $soundtrack, $director, $movie_director);
+    $score = 0;
 
     if (isset($_POST["nextQuestion"]) && $question_number < count($questions) - 1) {
+        $score = htmlspecialchars($_POST["score"]);
+        
         $question_number += 1;
         $_SESSION["question_number"] = $question_number;
     }
@@ -76,14 +79,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
 </head>
 
 <body>
+    <h1>Question Number: <?php echo $question_number; ?></h1>
     <h1><?php echo $questions[$question_number]; ?></h1>
+    <p>Time left: <span id="timeLeft"></span></p>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
-        <?php echo $all_answers[$question_number][4]; ?><br>
-        <?php echo "Correct answer " . $all_answers[$question_number][5]; ?>
+        <div><?php echo $all_answers[$question_number][4]; ?></div>
+        <p>Your score: <input type="text" id="score" name="score" value="<?php echo $score ?>" readonly></p>
         <div>
             <button type="button" class="answer-button">
                 <?php echo $all_answers[$question_number][0]; ?>
@@ -98,11 +104,11 @@
                 <?php echo $all_answers[$question_number][3]; ?>
             </button>
         </div>
-        <button type="submit" name="nextQuestion">Next</button><br>
+        <button type="submit" name="nextQuestion" id="nextQuestionButton" disabled>Next</button><br>
         <a href="index.php"><button>Home</button></a>
-        <input type="hidden" value="<?php echo $all_answers[$question_number][5]; ?>">
+        <input type="hidden" id="secret" value="<?php echo $all_answers[$question_number][5]; ?>">
     </form>  
     
-    <script src="script.js"></script>
+    <script src="scripts/script.js"></script>
 </body>
 </html>
