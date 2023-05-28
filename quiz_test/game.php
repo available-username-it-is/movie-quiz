@@ -7,8 +7,6 @@
         "Guess the movie from the picture",
         "What's the name of this character?",
         "Guess the actor from the picture",
-        "Which movie from this list was released in this year?",
-        "Which movie from this list has the highest revenue?",
         "Guess the movie by quote?(text)",
         "Guess the movie by quote?(audio)",
         "Guess the movie from its soundtrack",
@@ -40,9 +38,8 @@
     $movie_shots = makeAnswers($connection, "movies", "movie_shot");
     $characters = makeAnswers($connection, "characters", "picture");
     $actors = makeAnswers($connection, "actors", "picture");
-    $release = makeAnswers($connection, "movies", "release_date");
 
-    $all_answers = array($movie_shots, $characters, $actors, $release);
+    $all_answers = array($movie_shots, $characters, $actors);
 
     if (isset($_POST["nextQuestion"]) && $question_number < count($questions) - 1) {
         $question_number += 1;
