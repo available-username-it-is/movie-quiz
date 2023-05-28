@@ -31,15 +31,36 @@
                         $row[$indexes[2]]["name"],
                         $row[$indexes[3]]["name"]);
         $correct_answer = random_int(0, 3);
-        array_push($answers, $row[$correct_answer][$additional_data]);
+        $correct_answer_id = $row[$indexes[$correct_answer]]["id"] - 1;
+        array_push($answers, $row[$correct_answer_id][$additional_data], $correct_answer);
+        return $answers;
+    }
+
+    function directorAnswers($connection, $question_type, $additional_data) {
+        $sql = "SELECT * FROM `" . $question_type . "`";
+        $statement = $connection->query($sql);
+        $row = $statement->fetchall();
+        $indexes = generateRandomIndexes(0, count($row));
+        $answers = array($row[$indexes[0]]["director"],
+                        $row[$indexes[1]]["director"],
+                        $row[$indexes[2]]["director"],
+                        $row[$indexes[3]]["director"]);
+        $correct_answer = random_int(0, 3);
+        $correct_answer_id = $row[$indexes[$correct_answer]]["id"] - 1;
+        array_push($answers, $row[$correct_answer_id][$additional_data], $correct_answer);
         return $answers;
     }
 
     $movie_shots = makeAnswers($connection, "movies", "movie_shot");
     $characters = makeAnswers($connection, "characters", "picture");
     $actors = makeAnswers($connection, "actors", "picture");
+    $text_quote = makeAnswers($connection, "movies", "text_quote");
+    $audio_quote = makeAnswers($connection, "movies", "audio_quote");
+    $soundtrack = makeAnswers($connection, "movies", "soundtrack");
+    $director = makeAnswers($connection, "directors", "picture");
+    $movie_director = directorAnswers($connection, "movies", "movie_shot");
 
-    $all_answers = array($movie_shots, $characters, $actors);
+    $all_answers = array($movie_shots, $characters, $actors, $text_quote, $audio_quote, $soundtrack, $director, $movie_director);
 
     if (isset($_POST["nextQuestion"]) && $question_number < count($questions) - 1) {
         $question_number += 1;
@@ -61,16 +82,27 @@
 <body>
     <h1><?php echo $questions[$question_number]; ?></h1>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
-        <?php echo $all_answers[$question_number][4]; ?>
+        <?php echo $all_answers[$question_number][4]; ?><br>
+        <?php echo "Correct answer " . $all_answers[$question_number][5]; ?>
         <div>
-            <button type="button"><?php echo $all_answers[$question_number][0]; ?></button>
-            <button type="button"><?php echo $all_answers[$question_number][1]; ?></button>
-            <button type="button"><?php echo $all_answers[$question_number][2]; ?></button>
-            <button type="button"><?php echo $all_answers[$question_number][3]; ?></button>
+            <button type="button" class="answer-button">
+                <?php echo $all_answers[$question_number][0]; ?>
+            </button>
+            <button type="button" class="answer-button">
+                <?php echo $all_answers[$question_number][1]; ?>
+            </button>
+            <button type="button" class="answer-button">
+                <?php echo $all_answers[$question_number][2]; ?>
+            </button>
+            <button type="button" class="answer-button">
+                <?php echo $all_answers[$question_number][3]; ?>
+            </button>
         </div>
-        <p><?php echo $question_number; ?></p>
         <button type="submit" name="nextQuestion">Next</button><br>
         <a href="index.php"><button>Home</button></a>
-    </form>    
+        <input type="hidden" value="<?php echo $all_answers[$question_number][5]; ?>">
+    </form>  
+    
+    <script src="script.js"></script>
 </body>
 </html>
