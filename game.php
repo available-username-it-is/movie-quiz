@@ -71,7 +71,7 @@
             $id = $_SESSION["user_id"];
             $score = $_SESSION["quiz_score"];
             
-            $sql = "SELECT correct_answers, wrong_answers, game_played FROM users
+            $sql = "SELECT correct_answers, wrong_answers, game_played, answers_accuracy FROM users
                     WHERE id = ?";
             $statement = $connection->prepare($sql);
             $statement->execute([$id]);
@@ -80,15 +80,17 @@
             $correct_answers = $row[0]["correct_answers"];
             $wrong_answers = $row[0]["wrong_answers"];
             $game_played = $row[0]["game_played"];
+            $answers_accuracy = $row[0]["answers_accuracy"];
             
             $correct_answers += $score;
             $wrong_answers += 8 - $score;
             $game_played += 1;
+            $answers_accuracy = round($correct_answers / ($correct_answers + $wrong_answers), 2) * 100;
         
-            $sql = "UPDATE users SET correct_answers = ?, wrong_answers = ?, game_played = ?
+            $sql = "UPDATE users SET correct_answers = ?, wrong_answers = ?, game_played = ?, answers_accuracy = ?
                     WHERE id = ?";
             $statement = $connection->prepare($sql);
-            $statement->execute([$correct_answers, $wrong_answers, $game_played, $id]);
+            $statement->execute([$correct_answers, $wrong_answers, $game_played, $answers_accuracy, $id]);
             header("location: results.php");
         }
 
@@ -114,7 +116,27 @@
     <h1><?php echo $questions[$question_number]; ?></h1>
     <p>Time left: <span id="timeLeft"></span></p>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
-        <div><?php echo $all_answers[$question_number][4]; ?></div>
+        <div><?php 
+            if ($question_number == 3) {
+                echo "<p>" . $all_answers[$question_number][4] . "</p>";
+            } elseif ($question_number == 4) {
+                echo "<img src='Images/audio_quote_question.png'>";
+                echo "
+                <audio autoplay>
+                    <source src='" . $all_answers[$question_number][4] . "' type='audio/mp3'>
+                </audio>
+            ";
+            } elseif ($question_number == 5) {
+                echo "<img src='Images/soundtrack_question.png'>";
+                echo "
+                <audio autoplay>
+                    <source src='" . $all_answers[$question_number][4] . "' type='audio/mp3'>
+                </audio>
+            ";
+            } else {
+                echo "<img src='". $all_answers[$question_number][4] ."'>";
+            }
+        ?></div>
         <p>Your score: <input type="text" id="score" name="score" value="<?php echo $score ?>" readonly></p>
         <div>
             <button type="button" class="answer-button">
