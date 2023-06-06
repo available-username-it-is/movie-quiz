@@ -1,0 +1,144 @@
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 65rem;
+  margin: 0 auto;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.logo-container img {
+  width: 6rem;
+}
+
+.logo-container p {
+  font-family: TepenoSansBold;
+  color: white;
+  font-size: 2rem;
+}
+
+.active-tab {
+  color: #4C7D81;
+}
+
+main {
+  background-color: #3d5a68;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+}
+
+.line-container {
+  display: flex;
+  justify-content: center;
+}
+
+.controls-container {
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+}
+
+.controls-container p {
+  font-size: 1.2rem;
+}
+
+.controls-container input {
+  background-color: transparent;
+  border: none;
+  color: white;
+  pointer-events: none;
+  max-width: 1.5rem;
+}
+
+#timeLeft {
+  font-family: Montserrat;
+  font-size: 1.2rem;
+}
+
+.timer-container {
+  display: flex;
+  align-items: center;
+}
+
+.controls-container button:disabled {
+  background-color: #3d5a68;
+}
+
+.question-container {
+  display: flex;
+  justify-content: center;
+}
+
+.question-visual {
+  display: flex;
+  justify-content: center;
+}
+
+.question-text {
+  font-size: 2.3rem;
+  max-width: 25rem;
+  text-align: center;
+}
+
+.question-image {
+  text-align: center;
+  max-width: 38rem;
+}
+
+.quote-question {
+  color: white;
+  margin-top: 5rem;
+  font-size: 1.8rem;
+  margin-bottom: 5rem;
+  max-width: 38rem;
+  text-align: center;
+}
+
+.answers-container {
+  margin-top: 2rem;
+  max-width: 38rem;
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: 10px;
+}
+
+.answer-button {
+  width: 100%;
+  /* padding: 2rem 5rem; */
+  border-radius: 0;
+  box-shadow: none;
+  justify-self: center;
+  background-color: #66818E;
+}
+
+.answer-button:hover {
+  box-shadow: none;
+}
+
+.correct-answer {
+  background-color: #2B7C74;
+}
+
+.wrong-answer {
+  background-color: #8F323B;
+}
+
+.question-number {
+  color: white;
+  font-size: 1.2rem;
+}

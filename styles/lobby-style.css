@@ -1,0 +1,99 @@
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 65rem;
+  margin: 0 auto;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.logo-container img {
+  width: 6rem;
+}
+
+.logo-container p {
+  font-family: TepenoSansBold;
+  color: white;
+  font-size: 2rem;
+}
+
+.active-tab {
+  color: #4C7D81;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #66818e;
+  padding-bottom: 3rem;
+}
+
+.main-container {
+  display: flex;
+  margin-top: 3rem;
+}
+
+.left-column {
+  background-color: white;
+  padding: 4rem 12rem;
+}
+
+.left-column h2 {
+  color: #3d5a68;
+  font-size: 4rem;
+}
+
+.rule-container {
+  display: flex;
+  align-items: center;
+  max-width: 30rem;
+  margin-bottom: 1.5rem;
+}
+
+.rule-container p {
+  font-size: 1.125rem;
+}
+
+.rule-container span {
+  font-size: 2.2rem;
+  margin-right: 0.5rem;
+}
+
+.play-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.play-container div {
+  display: flex;
+  align-items: center;
+}
+
+.play-container div span {
+  font-size: 2.2rem;
+  margin-right: 0.5rem;
+}
+
+.play-container div p {
+  max-width: 12rem;
+}
+
+.main-container img {
+  object-fit: cover;
+  object-position: 50% 50%;
+}
+
+.right-column {
+  max-width: 30rem;
+  background: rgb(84,98,115);
+  background: linear-gradient(90deg, rgba(84,98,115,1) 0%, rgba(76,125,129,1) 9%, rgba(102,129,142,1) 42%, rgba(140,150,162,1) 94%);
+}

@@ -1,0 +1,112 @@
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 65rem;
+  margin: 0 auto;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.logo-container img {
+  width: 6rem;
+}
+
+.logo-container p {
+  font-family: TepenoSansBold;
+  color: white;
+  font-size: 2rem;
+}
+
+.active-tab {
+  color: #4C7D81;
+}
+
+main {
+  background-color: #66818e;
+}
+
+section {
+  display: flex;
+  justify-content: center;
+}
+
+.login-container {
+  background: #3d5a68;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  padding: 1rem 3rem;
+  max-width: 22rem;
+  box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.178);
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+h1 {
+  font-size: 2.4rem;
+}
+
+label {
+  font-family: Montserrat;
+  font-size: 1.2rem;
+  display: block;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+}
+
+input {
+  background-color: #8ea8b3;
+  border: none;
+  padding: 0.5rem 1rem;
+  font: 1rem Montserrat;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.button-container button {
+  padding: 0.5rem 3rem;
+}
+
+.register-link {
+  font: 1rem Montserrat;
+  color: #8ea8b3;
+  text-decoration: underline;
+}
+
+.register-link:hover {
+  color: #71858e;
+}
+
+span {
+  font: 0.8rem Montserrat;
+}
+
+.password-container {
+  position: relative;
+}
+
+.material-symbols-outlined {
+  position: absolute;
+  right: 6px;
+  top: 6px;
+  cursor: pointer;
+}
+
+.material-symbols-outlined:hover {
+  color: #3d5a68;
+}

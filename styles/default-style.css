@@ -113,12 +113,12 @@ button {
   max-width: 175px;
 }
 
-button:hover {
+button:hover:enabled {
   background-color: #0F5257;
   box-shadow: 0 6px 1px -3px #2b7c744d;
 }
 
-button:active {
+button:active:enabled {
   background-color: #0b3d41;
   box-shadow: 0 6px 1px -3px #2b7c741c;
 }
@@ -132,4 +132,19 @@ address {
   margin-left: auto;
   margin-right: auto;
   max-width: 65rem;
+}
+
+footer hr {
+  width: 4rem;
+  height: 2px;
+  background-color: black;
+  border: none;
+}
+
+footer h4 {
+  font-size: 1.5rem;
+}
+
+address p {
+  margin-bottom: 3rem;
 }

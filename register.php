@@ -1,7 +1,7 @@
 <?php 
     require_once "connection.php";
     session_start();
-
+    $active_tab = "login.php";
     $username = $password = $confirm_password = "";
     $username_err = $password_err = $confirm_password_err = "";
 
@@ -82,39 +82,56 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css">
+    <link rel="stylesheet" href="styles/default-style.css">
+    <link rel="stylesheet" href="styles/login-style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 </head>
 
 <body>
+    <?php include "includes/login_nav.php";?>
+
     <main>
         <section>
-            <h1>Create new account</h1>
-            <p>Please, input required information</p>
-
-            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-                <input type="hidden" name="token" id="csrf_token" value="<?=$_SESSION['token']?>">
-                <div>
-                    <label>Username</label>
-                    <input type="text" name="username" value="<?php echo htmlspecialchars($username); ?>">
-                    <span><?php echo $username_err; ?></span>
-			    </div> 
-                <div>
-                    <label>Password</label>
-                    <input type="password" name="password" value="<?php echo htmlspecialchars($password); ?>">
-                    <span><?php echo $password_err; ?></span>
-			    </div>
-                <div>
-                    <label>Confirm your password</label>
-                    <input type="password" name="confirm_password" value="<?php htmlspecialchars($confirm_password); ?>">
-                    <span><?php echo $confirm_password_err; ?></span>
-			    </div>
-                <div>
-				    <input type="submit" value="Register">
-                </div>
-                <p>Already have an account? <a href="login.php">Sign in here</a>.</p>
-                <p><a href="index.php">Back</a></p>
-            </form>
+            <div class="login-container">
+                <h1>Register</h1>
+    
+                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                    <input type="hidden" name="token" id="csrf_token" value="<?=$_SESSION['token']?>">
+                    <div class="input-container">
+                        <label>Username</label>
+                        <input type="text" name="username" value="<?php echo htmlspecialchars($username); ?>">
+                        <span><?php echo $username_err; ?></span>
+                    </div> 
+                    <div class="input-container">
+                        <label>Password</label>
+                        <div class="password-container">
+                            <input type="password" name="password" id="password" value="<?php echo htmlspecialchars($password); ?>">
+                            <span class="material-symbols-outlined" id="password-toggler">
+                                visibility
+                            </span>
+                        </div>
+                        <span><?php echo $password_err; ?></span>
+                    </div>
+                    <div class="input-container">
+                        <label>Confirm your password</label>
+                        <div class="password-container">
+                            <input type="password" name="confirm_password" id="confirm-password" value="<?php htmlspecialchars($confirm_password); ?>">
+                            <span class="material-symbols-outlined" id="confirm-password-toggler">
+                                visibility
+                            </span>
+                        </div>
+                        <span><?php echo $confirm_password_err; ?></span>
+                    </div>
+                    <div class="button-container">
+                        <button type="submit">Register</button>
+                    </div>
+                    <p>Already have an account?</p>
+                    <a href="login.php" class="register-link">Sign in here</a>
+                </form>
+            </div>
         </section>
     </main>
+
+    <script src="scripts/password.js"></script>
 </body>
 </html>

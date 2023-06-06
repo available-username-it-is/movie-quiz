@@ -1,6 +1,7 @@
 <?php
 session_start();
- 
+
+$active_tab = "login.php";
 if(isset($_SESSION["user_id"]) && (time() - $_SESSION["last_activity"] < 1800)){
     header("location: index.php");
     exit;
@@ -76,40 +77,60 @@ require_once "includes/csrf_token.php";
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css">
+    <link rel="stylesheet" href="styles/default-style.css">
+    <link rel="stylesheet" href="styles/login-style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <title>Log In</title>
 </head>
 
 <body>
+    <?php include "includes/login_nav.php";?>
+
     <main>
 	<section>
-		<h1>Log in</h1>
-		
-		<span>
-		<?php echo $account_err;?>
-		</span>
-		
-		<p>Please, input your data.</p>
-		<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-			<input type="hidden" name="token" id="csrf_token" value="<?=$_SESSION['token']?>"> 
-			<div>
-				<label>Username</label>
-				<input type="text" name="username" value="<?php echo htmlspecialchars($username); ?>">
-				<span><?php echo $username_err; ?></span>
-			</div>    
-			<div>
-				<label>Password</label>
-				<input type="password" name="password">
-				<span><?php echo $password_err; ?></span>
-			</div>
-			<div>
-				<button type="submit">Log in</button>
-			</div>
-			<p>Don't have an account? <a href="register.php">Create new account</a>.</p>
-			<p><a href="index.php">Back</a></p>
-		</form>
+        <div class="login-container">
+            <h1>Log in</h1>
+            
+            <span>
+            <?php echo $account_err;?>
+            </span>
+            
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                <input type="hidden" name="token" id="csrf_token" value="<?=$_SESSION['token']?>"> 
+                <div class="input-container">
+                    <label>Username</label>
+                    <input type="text" name="username" value="<?php echo htmlspecialchars($username); ?>">
+                    <span><?php echo $username_err; ?></span>
+                </div>    
+                <div class="input-container">
+                    <label>Password</label>
+                    <div class="password-container">
+                        <input type="password" name="password" id="password">
+                        <span class="material-symbols-outlined" id="password-toggler">
+                            visibility
+                        </span>
+                    </div>
+                    <span><?php echo $password_err; ?></span>
+                </div>
+                <div class="button-container">
+                    <button type="submit">Log in</button>
+                </div>
+                <p>Don't have an account?</p>
+                <a href="register.php" class="register-link">Create new account</a>
+            </form>
+        </div>
 	</section>
 
 	</main>
+
+    <footer>
+        <address>
+            <hr>
+            <h4>Contact</h4>
+            <p>myemail@gmail.com</p>
+        </address>
+    </footer>
+
+    <script src="scripts/password.js"></script>
 </body>
 </html>
