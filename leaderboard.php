@@ -12,13 +12,11 @@
     $position = 1;
     $rank = 1;
     while ($row = $statement->fetch()) {
-        if ($rank > 3) {
-            $rank = "";
-        } else {
+        if ($rank < 4) {
             $odd_rank = "odd-" . $rank;
             $even_rank = "even-" . $rank;
-            $rank += 1;
         }
+        $rank += 1;
         $tableRow = "<tr>
             <td class='$odd_rank'><b>" . $position . "</b></td>
             <td class='$even_rank'><b>" . $row['name'] . "</b></td>
@@ -43,6 +41,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leaderboard</title>
+    <link rel="icon" type="image/x-icon" href="/Images/favicon.png">
     <link rel="stylesheet" href="styles/default-style.css">
     <link rel="stylesheet" href="styles/leaderboard-style.css">
 </head>

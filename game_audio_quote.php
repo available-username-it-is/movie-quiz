@@ -82,6 +82,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="styles/game-style.css" />
     <link rel="stylesheet" href="styles/default-style.css" />
+    <link rel="icon" type="image/x-icon" href="/Images/favicon.png">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 </head>
 

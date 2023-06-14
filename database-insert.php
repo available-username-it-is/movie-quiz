@@ -32,11 +32,11 @@
     // VALUES ('$character', '$picture')";
     // $connection->exec($sql);
 
-    $actor = "Joaquin Phoenix";
-    $lastName = explode(" ", $actor);
-    $picture = "movie_data/actors/" . strtolower($lastName[1]) . ".webp";
+    // $actor = "Joaquin Phoenix";
+    // $lastName = explode(" ", $actor);
+    // $picture = "movie_data/actors/" . strtolower($lastName[1]) . ".webp";
 
-    $sql = "INSERT INTO actors (name, picture)
-    VALUES ('$actor', '$picture')";
-    $connection->exec($sql);
+    // $sql = "INSERT INTO actors (name, picture)
+    // VALUES ('$actor', '$picture')";
+    // $connection->exec($sql);
 ?>
