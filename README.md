@@ -14,3 +14,8 @@ Welcome to the Movie Quiz Website repository! This project is a fun and interact
 - MySQL: Database for storing questions, answers, and leaderboard data
 
 ## 📷Screenshots
+![s1](quizes.png)
+![s2](question.png)
+
+## Live
+http://movie-quiz.liveblog365.com/index.html
